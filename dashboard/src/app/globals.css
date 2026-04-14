@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "cv11", "ss01";
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

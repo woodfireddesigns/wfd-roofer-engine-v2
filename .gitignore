@@ -1,0 +1,10 @@
+.env
+node_modules/
+.next/
+dist/
+*.pyc
+__pycache__/
+.vercel
+dashboard/node_modules/
+dashboard/.next/
+dashboard/.vercel
