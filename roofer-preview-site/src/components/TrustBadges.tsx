@@ -13,7 +13,7 @@ export function TrustBadges({ certifications }: TrustBadgesProps) {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-16">
                     <span className="text-[var(--brand-accent)] text-xs font-black uppercase tracking-[0.3em] mb-4 block">Unmatched Credibility</span>
-                    <h2 className="text-4xl stripe-display text-[#061b31]">Certified Quality and Guaranteed Workmanship</h2>
+                    <h2 className="text-4xl stripe-display text-[var(--brand-primary)]">Certified Quality and Guaranteed Workmanship</h2>
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -39,7 +39,7 @@ export function TrustBadges({ certifications }: TrustBadgesProps) {
                                         <Icon className="w-10 h-10" />
                                     </div>
                                 </div>
-                                <h3 className="text-sm font-black text-[#061b31] uppercase tracking-widest leading-tight">
+                                <h3 className="text-sm font-black text-[var(--brand-primary)] uppercase tracking-widest leading-tight">
                                     {cert}
                                 </h3>
                                 <p className="mt-4 text-[10px] text-gray-500 font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
@@ -50,7 +50,7 @@ export function TrustBadges({ certifications }: TrustBadgesProps) {
                     })}
                 </div>
                 
-                <div className="mt-20 pt-8 border-t border-gray-100 flex flex-wrap justify-center items-center gap-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700 font-bold text-[#061b31]">
+                <div className="mt-20 pt-8 border-t border-gray-100 flex flex-wrap justify-center items-center gap-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700 font-bold text-[var(--brand-primary)]">
                     <img src="/ga-certified-badge.png" onError={(e) => { e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/e/e8/GAF_Materials_Corporation_logo.svg"}} alt="GAF" className="h-8 md:h-12 w-auto" />
                     <img src="/bbb-badge.webp" onError={(e) => { e.currentTarget.src = "https://www.owenscorning.com/en-us/roofing/site-assets/logo-owens-corning-color.svg"}} alt="OC" className="h-8 md:h-12 w-auto" />
                     <img src="/trustpilot-badge.png" onError={(e) => { e.currentTarget.src = "https://www.certainteed.com/sites/default/files/logo.svg"}} alt="CertainTeed" className="h-8 md:h-10 w-auto" />

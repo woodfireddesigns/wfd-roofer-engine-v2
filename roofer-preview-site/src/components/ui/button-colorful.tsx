@@ -20,7 +20,7 @@ export function ButtonColorful({
                     "relative h-14 px-10 overflow-hidden rounded-full font-black text-xs uppercase tracking-widest",
                     "bg-transparent border-2 border-[var(--brand-accent)] text-white",
                     "transition-all duration-300",
-                    "hover:shadow-[0_0_20px_var(--brand-accent)] hover:bg-[var(--brand-accent)] hover:text-black",
+                    "hover:shadow-[0_0_20px_var(--brand-accent)] hover:bg-[var(--brand-accent)] hover:text-[var(--brand-dark)]",
                     "group",
                     className
                 )}
@@ -38,7 +38,7 @@ export function ButtonColorful({
         <Button
             className={cn(
                 "relative h-14 px-10 overflow-hidden rounded-full font-black text-xs uppercase tracking-widest",
-                "bg-[var(--brand-accent)] text-[#0a0a0a] shadow-lg",
+                "bg-[var(--brand-accent)] text-[var(--brand-dark)] shadow-lg",
                 "transition-all duration-300",
                 "hover:scale-105 hover:shadow-[0_0_30px_var(--brand-accent)]",
                 "group",

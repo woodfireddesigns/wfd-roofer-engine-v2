@@ -2,7 +2,9 @@
 
 :root {
   --brand-accent: #c5a059;
-  --brand-dark: #0a0a0a;
+  --brand-primary: #061b31;
+  --brand-dark: var(--brand-primary);
+  --brand-surface: #141414;
   --brand-light: #f5f5f4;
 }
 
@@ -27,7 +29,7 @@ body {
   --radius-pill: 30px;
   
   /* Shadow for Stripe sections */
-  --shadow-stripe: 0 4px 16px rgba(50, 50, 93, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-stripe: 0 4px 16px color-mix(in_srgb, var(--brand-primary), transparent 88%), 0 2px 6px color-mix(in_srgb, var(--brand-primary), transparent 92%);
 }
 
 /* Typography Overrides */

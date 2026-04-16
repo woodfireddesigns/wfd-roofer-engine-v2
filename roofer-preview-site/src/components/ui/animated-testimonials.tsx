@@ -89,7 +89,7 @@ export function AnimatedTestimonials({
   }
 
   return (
-    <section ref={sectionRef} id="reviews" className={`py-24 overflow-hidden bg-[#0c0c0c] border-y border-white/5 ${className || ""}`}>
+    <section ref={sectionRef} id="reviews" className={`py-24 overflow-hidden bg-[var(--brand-dark)] border-y border-white/5 ${className || ""}`}>
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial="hidden"
@@ -101,8 +101,8 @@ export function AnimatedTestimonials({
           <motion.div variants={itemVariants} className="flex flex-col justify-center">
             <div className="space-y-6">
               {badgeText && (
-                <div className="inline-flex items-center px-4 py-1 rounded-full text-xs font-black bg-[var(--brand-accent)] text-[#0a0a0a] uppercase tracking-widest">
-                  <Star className="mr-2 h-3.5 w-3.5 fill-[#0a0a0a]" />
+                <div className="inline-flex items-center px-4 py-1 rounded-full text-xs font-black bg-[var(--brand-accent)] text-[var(--brand-dark)] uppercase tracking-widest">
+                  <Star className="mr-2 h-3.5 w-3.5 fill-[var(--brand-dark)]" />
                   <span>{badgeText}</span>
                 </div>
               )}
@@ -141,7 +141,7 @@ export function AnimatedTestimonials({
                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                 style={{ zIndex: activeIndex === index ? 10 : 0 }}
               >
-                <div className="bg-[#111111] border border-white/10 shadow-2xl rounded-3xl p-8 h-full flex flex-col justify-between">
+                <div className="bg-[var(--brand-surface)] border border-white/10 shadow-2xl rounded-3xl p-8 h-full flex flex-col justify-between">
                   <div>
                     <div className="mb-6 flex gap-1">
                       {Array(testimonial.rating)

@@ -9,7 +9,7 @@ export function ServiceAreaCards({ cities }: ServiceAreaCardsProps) {
     if (!cities || cities.length <= 1) return null;
 
     return (
-        <section className="py-32 bg-[#0a0a0a] overflow-hidden">
+        <section className="py-32 bg-[var(--brand-dark)] overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex flex-col items-center text-center justify-center mb-20 gap-8">
                     <div className="max-w-3xl">
@@ -32,10 +32,10 @@ export function ServiceAreaCards({ cities }: ServiceAreaCardsProps) {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05 }}
                             whileHover={{ y: -8 }}
-                            className="group relative bg-[#111111] border border-white/5 p-8 rounded-2xl transition-all hover:border-[var(--brand-accent)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] cursor-pointer w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.35rem)]"
+                            className="group relative bg-[var(--brand-surface)] border border-white/5 p-8 rounded-2xl transition-all hover:border-[var(--brand-accent)] hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-dark),transparent_50%)] cursor-pointer w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.35rem)]"
                         >
                             <div className="flex items-start justify-between mb-8">
-                                <div className="p-3 bg-white/5 rounded-xl group-hover:bg-[var(--brand-accent)] group-hover:text-black transition-colors duration-500">
+                                <div className="p-3 bg-white/5 rounded-xl group-hover:bg-[var(--brand-accent)] group-hover:text-[var(--brand-dark)] transition-colors duration-500">
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div className="text-right">

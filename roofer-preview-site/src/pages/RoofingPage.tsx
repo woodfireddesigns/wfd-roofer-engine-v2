@@ -75,9 +75,9 @@ export default function RoofingPage() {
             company_name: leadRecord.business_name,
             hero_copy: leadRecord.tagline || "",
             brand_color_accent: kit?.accent || pickAccentColor(leadRecord.brand_primary_color, leadRecord.brand_secondary_color),
-            brand_color_dark: kit?.background || '#0a0a0a',
+            brand_color_dark: kit?.background || leadRecord.brand_primary_color || '#0a0a0a',
             brand_color_light: '#f5f5f4',
-            brand_color_surface: kit?.surface || '#141414',
+            brand_color_surface: kit?.surface || leadRecord.brand_secondary_color || '#141414',
             brand_font: kit?.font_display || leadRecord.brand_font,
             service_area: leadRecord.service_areas || (leadRecord.city ? [leadRecord.city] : []),
             services: leadRecord.services || DEFAULT_SERVICES,
@@ -115,11 +115,18 @@ export default function RoofingPage() {
   useEffect(() => {
     if (!data) return;
     const root = document.documentElement;
-    root.style.setProperty('--brand-accent', data.brand_color_accent || '#c5a059');
-    root.style.setProperty('--brand-dark', data.brand_color_dark || '#0a0a0a');
+    
+    // Ensure we have values
+    const primary = (data as any).brand_primary_raw || '#061b31';
+    const dark = data.brand_color_dark || primary;
+    const surface = data.brand_color_surface || '#141414';
+    const accent = data.brand_color_accent || '#c5a059';
+
+    root.style.setProperty('--brand-accent', accent);
+    root.style.setProperty('--brand-dark', dark);
     root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
-    root.style.setProperty('--brand-surface', data.brand_color_surface || '#141414');
-    root.style.setProperty('--brand-primary', (data as any).brand_primary_raw || '#061b31');
+    root.style.setProperty('--brand-surface', surface);
+    root.style.setProperty('--brand-primary', primary);
     
     if (data.brand_font) {
       const link = document.createElement('link');
@@ -135,6 +142,8 @@ export default function RoofingPage() {
       root.style.removeProperty('--brand-accent');
       root.style.removeProperty('--brand-dark');
       root.style.removeProperty('--brand-light');
+      root.style.removeProperty('--brand-surface');
+      root.style.removeProperty('--brand-primary');
       root.style.removeProperty('--font-display');
     };
   }, [data]);
@@ -165,7 +174,7 @@ export default function RoofingPage() {
 
   if (loading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-[#0a0a0a] text-white">
+      <div className="h-screen w-full flex items-center justify-center bg-[var(--brand-dark)] text-white">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--brand-accent)]"></div>
       </div>
     );
@@ -253,9 +262,9 @@ export default function RoofingPage() {
       </section>
 
       {/* 4. Services Grid (Nike Style) */}
-      <section id="services" className="py-24">
+      <section id="services" className="py-24" style={{ backgroundColor: 'white' }}>
         <div className="px-6 mb-16">
-          <h2 className="text-6xl md:text-8xl nike-display text-[#111111] leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-6xl md:text-8xl nike-display text-[var(--brand-primary)] leading-none" style={{ fontFamily: 'var(--font-display)' }}>
             WHAT WE DO
           </h2>
         </div>
@@ -267,14 +276,14 @@ export default function RoofingPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="group relative aspect-[4/3] overflow-hidden bg-black"
+              className="group relative aspect-[4/3] overflow-hidden bg-[var(--brand-dark)]"
             >
               <img 
                 src={Object.keys(serviceImages).find(k => service.toLowerCase().includes(k)) ? serviceImages[Object.keys(serviceImages).find(k => service.toLowerCase().includes(k))!] : serviceImages.default} 
                 alt={service}
                 className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex items-end p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-dark)]/90 via-[var(--brand-dark)]/20 to-transparent flex items-end p-8">
                 <h3 className="text-3xl nike-display text-white tracking-tight transform group-hover:-translate-y-2 transition-transform duration-500">{service}</h3>
               </div>
             </motion.div>
