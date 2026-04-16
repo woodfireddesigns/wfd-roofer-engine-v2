@@ -26,8 +26,9 @@ export const MOCK_DATA: LeadQueueData = {
   company_name: "Apex Forge Roofing",
   hero_copy: "UNFAILING PROTECTION FOR GENERATIONS.",
   brand_color_accent: "#c5a059",
-  brand_color_dark: "#0a0a0a",
+  brand_color_dark: "#061b31",
   brand_color_light: "#f5f5f4",
+  brand_color_surface: "#0a1f35",
   brand_font: null,
   service_area: ["Salisbury", "Ocean City", "Easton", "Cambridge", "Berlin"],
   services: [
