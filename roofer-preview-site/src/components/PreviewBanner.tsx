@@ -48,7 +48,7 @@ export default function PreviewBanner() {
           <div className="flex items-center">
             <a 
               href="mailto:michael@woodfireddesigns.com"
-              className="w-full flex items-center justify-center space-x-2 px-8 py-4 rounded-full font-black text-sm uppercase transition-all duration-300 hover:scale-[1.05] active:scale-95 text-[var(--brand-dark)] shadow-[0_10px_40px_color-mix(in_srgb,var(--brand-dark),transparent_70%)] hover:shadow-[var(--brand-accent)]/30 border-2 border-transparent hover:border-[var(--brand-accent)]/50"
+              className="w-full flex items-center justify-center space-x-2 px-8 py-4 rounded-full font-black text-sm uppercase transition-all duration-300 hover:scale-[1.05] active:scale-95 text-[var(--brand-dark)] shadow-[0_10px_40px_color-mix(in srgb,var(--brand-dark),transparent_70%)] hover:shadow-[var(--brand-accent)]/30 border-2 border-transparent hover:border-[var(--brand-accent)]/50"
               style={{ backgroundColor: 'var(--brand-accent)' }}
             >
               <span className="tracking-[0.1em]">SEE PRICING</span>

@@ -32,7 +32,7 @@ export function ServiceAreaCards({ cities }: ServiceAreaCardsProps) {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05 }}
                             whileHover={{ y: -8 }}
-                            className="group relative bg-[var(--brand-surface)] border border-white/5 p-8 rounded-2xl transition-all hover:border-[var(--brand-accent)] hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-dark),transparent_50%)] cursor-pointer w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.35rem)]"
+                            className="group relative bg-[var(--brand-surface)] border border-white/5 p-8 rounded-2xl transition-all hover:border-[var(--brand-accent)] hover:shadow-[0_20px_40px_color-mix(in srgb,var(--brand-dark),transparent_50%)] cursor-pointer w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.35rem)]"
                         >
                             <div className="flex items-start justify-between mb-8">
                                 <div className="p-3 bg-white/5 rounded-xl group-hover:bg-[var(--brand-accent)] group-hover:text-[var(--brand-dark)] transition-colors duration-500">

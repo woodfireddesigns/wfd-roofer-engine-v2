@@ -3,12 +3,11 @@
 :root {
   --brand-accent: #c5a059;
   --brand-primary: #061b31;
-  /* Derived dark theme - 75% primary depth for background, 65% for surface */
-  --brand-dark: color-mix(in_srgb, var(--brand-primary), black 75%);
-  --brand-surface: color-mix(in_srgb, var(--brand-primary), black 65%);
+  --brand-dark: color-mix(in srgb, var(--brand-primary), black 40%);
+  --brand-surface: color-mix(in srgb, var(--brand-primary), black 25%);
   --brand-light: #f5f5f4;
-  --brand-text-muted: color-mix(in_srgb, var(--brand-primary), transparent 40%);
-  --brand-border: color-mix(in_srgb, var(--brand-primary), transparent 85%);
+  --brand-text-muted: color-mix(in srgb, var(--brand-primary), transparent 40%);
+  --brand-border: color-mix(in srgb, var(--brand-primary), transparent 85%);
 }
 
 /* Global Styles */
@@ -32,7 +31,7 @@ body {
   --radius-pill: 30px;
   
   /* Shadow for Stripe sections */
-  --shadow-stripe: 0 4px 16px color-mix(in_srgb, var(--brand-primary), transparent 88%), 0 2px 6px color-mix(in_srgb, var(--brand-primary), transparent 92%);
+  --shadow-stripe: 0 4px 16px color-mix(in srgb, var(--brand-primary), transparent 88%), 0 2px 6px color-mix(in srgb, var(--brand-primary), transparent 92%);
 }
 
 /* Typography Overrides */
