@@ -123,10 +123,8 @@ export default function RoofingPage() {
     const accent = data.brand_color_accent || '#c5a059';
 
     root.style.setProperty('--brand-accent', accent);
-    root.style.setProperty('--brand-dark', dark);
-    root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
-    root.style.setProperty('--brand-surface', surface);
     root.style.setProperty('--brand-primary', primary);
+    root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
     
     if (data.brand_font) {
       const link = document.createElement('link');

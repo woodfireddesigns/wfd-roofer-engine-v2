@@ -3,8 +3,9 @@
 :root {
   --brand-accent: #c5a059;
   --brand-primary: #061b31;
-  --brand-dark: var(--brand-primary);
-  --brand-surface: color-mix(in_srgb, var(--brand-primary), black 20%);
+  /* Derived dark theme - 75% primary depth for background, 65% for surface */
+  --brand-dark: color-mix(in_srgb, var(--brand-primary), black 75%);
+  --brand-surface: color-mix(in_srgb, var(--brand-primary), black 65%);
   --brand-light: #f5f5f4;
   --brand-text-muted: color-mix(in_srgb, var(--brand-primary), transparent 40%);
   --brand-border: color-mix(in_srgb, var(--brand-primary), transparent 85%);
