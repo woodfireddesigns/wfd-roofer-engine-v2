@@ -15,6 +15,7 @@ export interface Lead {
   grade: string
   score: number
   brand_primary_color: string
+  brand_secondary_color: string
   pagespeed_mobile: number
   tagline: string
 }
@@ -22,16 +23,27 @@ export interface Lead {
 export default function LeadTable() {
   const [leads, setLeads] = useState<Lead[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchLeads() {
-      const { data, error } = await supabase
-        .from('roofing_leads')
-        .select('*')
-        .order('score', { ascending: false })
-      
-      if (data) setLeads(data)
-      setLoading(false)
+      try {
+        const { data, error } = await supabase
+          .from('roofing_leads')
+          .select('*')
+          .order('score', { ascending: false })
+        
+        if (error) {
+          console.error(error)
+          setError(error.message)
+        } else if (data) {
+          setLeads(data)
+        }
+      } catch (err: any) {
+        setError(err.message || 'An unexpected error occurred')
+      } finally {
+        setLoading(false)
+      }
     }
     fetchLeads()
   }, [])
@@ -43,6 +55,14 @@ export default function LeadTable() {
   }
 
   if (loading) return <div className="p-8 text-zinc-500 animate-pulse text-center">Loading Lead Pipeline...</div>
+  if (error) return (
+    <div className="p-8 border border-rose-900 bg-rose-950/20 text-rose-400 rounded-xl text-center">
+      <AlertCircle className="w-8 h-8 mx-auto mb-2 opacity-50" />
+      <h4 className="font-bold">Database Error</h4>
+      <p className="text-sm opacity-80">{error}</p>
+      <p className="text-xs mt-4">Check your Supabase Keys in Vercel settings.</p>
+    </div>
+  )
 
   return (
     <div className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-md shadow-2xl">
@@ -81,12 +101,19 @@ export default function LeadTable() {
                 </span>
               </td>
               <td className="px-4 py-5 text-center">
-                <div className="flex justify-center">
+                <div className="flex justify-center -space-x-1">
                   <div 
-                    className="w-6 h-6 rounded-md shadow-inner border border-zinc-700" 
+                    className="w-6 h-6 rounded-md shadow-inner border border-zinc-700 z-10" 
                     style={{ backgroundColor: lead.brand_primary_color || '#333' }}
-                    title={lead.brand_primary_color || 'No Color Extracted'}
+                    title={`Primary: ${lead.brand_primary_color || 'N/A'}`}
                   />
+                  {lead.brand_secondary_color && (
+                    <div 
+                      className="w-6 h-6 rounded-md shadow-inner border border-zinc-700 translate-x-1 translate-y-1" 
+                      style={{ backgroundColor: lead.brand_secondary_color }}
+                      title={`Secondary: ${lead.brand_secondary_color}`}
+                    />
+                  )}
                 </div>
               </td>
               <td className="px-4 py-5 text-center">

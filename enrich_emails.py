@@ -29,6 +29,9 @@ def get_domain(url):
     return domain
 
 def find_emails_by_company(domain):
+    """
+    Improved enrichment logic with polling and status verification.
+    """
     url = "https://api.anymailfinder.com/v5.1/find-email/company"
     payload = {
         "domain": domain
@@ -38,51 +41,75 @@ def find_emails_by_company(domain):
         "Content-Type": "application/json"
     }
     
-    try:
-        response = requests.post(url, json=payload, headers=headers)
-        if response.status_code == 200:
-            data = response.json()
-            if isinstance(data, dict):
+    # Retry loop for pending results (Long Poll)
+    max_retries = 6
+    retry_delay = 10 # 10 seconds between retries
+    
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(url, json=payload, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Check for definitive status keys as requested by user
+                # AMF v5.1 standard response structure for company:
+                # { "emails": [...], "status": "ok", "metadata": {...} }
+                
+                status = data.get("status")
                 emails = data.get("emails", [])
+                
+                if status == "pending":
+                    print(f"  Attempt {attempt + 1}: Status pending, waiting {retry_delay}s...")
+                    time.sleep(retry_delay)
+                    continue
+                
+                # If we get here, status is definitive (ok, not_found, etc.)
                 if emails and len(emails) > 0:
-                    first_email = emails[0]
-                    # Check if first_email is a dict or just a string
-                    if isinstance(first_email, dict):
-                        return first_email.get("email"), 100
-                    else:
-                        return str(first_email), 100
-            elif isinstance(data, list) and len(data) > 0:
-                 first_item = data[0]
-                 if isinstance(first_item, dict):
-                     return first_item.get("email"), 100
-                 else:
-                     return str(first_item), 100
-        else:
-            print(f"  API Error {response.status_code}")
-        return None, None
-    except Exception as e:
-        print(f"  Enrichment Error: {e}")
-        return None, None
+                    # Pick the highest quality one
+                    for email_obj in emails:
+                        if isinstance(email_obj, dict):
+                            email = email_obj.get("email")
+                            v_status = email_obj.get("status") # valid, risky, etc.
+                            if v_status in ["valid", "risky"]:
+                                return email, v_status
+                        else:
+                            return str(email_obj), "valid"
+                
+                if status == "not_found":
+                    return None, "not_found"
+                    
+                return None, status
+            elif response.status_code == 202: # Often used for 'Accepted / Processing'
+                print(f"  Attempt {attempt + 1}: 202 Accepted, waiting {retry_delay}s...")
+                time.sleep(retry_delay)
+                continue
+            else:
+                print(f"  API Error {response.status_code}")
+                return None, f"error_{response.status_code}"
+                
+        except Exception as e:
+            print(f"  Enrichment Error: {e}")
+            return None, "exception"
+            
+    return None, "timeout"
 
 def main():
     print("Fetching Grade A leads without emails...")
+    # Clear previous failed match notes to retry with new logic
     supabase.table("roofing_leads").update({"notes": None}).eq("notes", "enrichment_attempted_no_match").execute()
     
-    response = supabase.table("roofing_leads").select("*").eq("grade", "A").execute()
+    response = supabase.table("roofing_leads").select("*").eq("grade", "A").is_("email", "NULL").execute()
     leads = response.data
     
     if not leads:
         print("No Grade A leads ready for enrichment.")
         return
         
-    print(f"Enriching {len(leads)} leads...")
+    print(f"Enriching {len(leads)} leads with Long-Poll logic...")
     
     found_count = 0
     
     for lead in leads:
-        if lead.get("email"):
-            continue 
-            
         business_name = lead.get("business_name")
         website = lead.get("website_url")
         
@@ -92,26 +119,27 @@ def main():
             continue
             
         print(f"Searching for: {business_name} ({domain})...")
-        email, confidence = find_emails_by_company(domain)
+        email, status = find_emails_by_company(domain)
         
         if email:
-            print(f"  FOUND: {email}")
+            print(f"  FOUND [{status.upper()}]: {email}")
             supabase.table("roofing_leads").update({
                 "email": email,
-                "email_confidence": 100,
-                "email_source": "anymailfinder_company"
+                "email_confidence": 100 if status == "valid" else 50,
+                "email_source": f"anymailfinder_{status}"
             }).eq("id", lead["id"]).execute()
             found_count += 1
         else:
-            print("  No match.")
+            print(f"  No match ({status}).")
             supabase.table("roofing_leads").update({
-                "notes": "enrichment_attempted_no_match"
+                "notes": f"enrichment_{status}"
             }).eq("id", lead["id"]).execute()
             
-        time.sleep(1)
+        # Small delay between different domains to avoid rate limits
+        time.sleep(2)
         
     print(f"\nEnrichment Complete!")
-    print(f"Successfully found {found_count} emails.")
+    print(f"Successfully found {found_count} new emails.")
 
 if __name__ == "__main__":
     main()
