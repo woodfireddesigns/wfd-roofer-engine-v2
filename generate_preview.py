@@ -148,14 +148,16 @@ def create_preview(lead_id: str) -> str:
     review_snippets = lead.get("review_snippets") or None
     review_authors = lead.get("review_authors") or None  # may not exist yet — Phase 5 enrichment
 
+    kit = lead.get("brand_ux_kit") or {}
     queue_record = {
         "slug": slug,
         "company_name": lead["business_name"],
         "hero_copy": hero_copy,
-        "brand_color_accent": accent,
-        "brand_color_dark": "#0a0a0a",
+        "brand_color_accent": kit.get("accent") or accent,
+        "brand_color_dark": kit.get("background") or "#0a0a0a",
+        "brand_color_surface": kit.get("surface") or "#141414",
         "brand_color_light": "#f5f5f4",
-        "brand_font": lead.get("brand_font") or None,
+        "brand_font": kit.get("font_display") or lead.get("brand_font"),
         "service_area": service_area,
         "services": lead.get("services") or DEFAULT_SERVICES,
         "logo_url": lead.get("logo_url") or "",

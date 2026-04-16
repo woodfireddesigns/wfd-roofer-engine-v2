@@ -116,24 +116,21 @@ export default function RoofingPage() {
     if (!data) return;
     const root = document.documentElement;
     
-    // Ensure we have values
-    const primary = (data as any).brand_primary_raw || '#061b31';
-    const dark = data.brand_color_dark || primary;
+    // Use brand colors directly from data
+    const dark = data.brand_color_dark || '#0a0a0a';
     const surface = data.brand_color_surface || '#141414';
     const accent = data.brand_color_accent || '#c5a059';
+    const light = data.brand_color_light || '#f5f5f4';
 
     root.style.setProperty('--brand-accent', accent);
-    root.style.setProperty('--brand-primary', primary);
-    root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
+    root.style.setProperty('--brand-dark', dark);
+    root.style.setProperty('--brand-surface', surface);
+    root.style.setProperty('--brand-light', light);
+    root.style.setProperty('--brand-primary', dark); // Use dark as primary for text
     
-    // Explicitly set calculated dark/surface colors to force the tinting away from black
-    const derivedDark = shadeColor(primary, -0.6); // 60% darker than primary
-    const derivedSurface = shadeColor(primary, -0.4); // 40% darker than primary
-    
-    root.style.setProperty('--brand-dark', derivedDark);
-    root.style.setProperty('--brand-surface', derivedSurface);
-    root.style.setProperty('--brand-border', shadeColor(primary, -0.2));
-    root.style.setProperty('--brand-text-muted', shadeColor(primary, -0.1));
+    // Use semi-transparent darks for borders and muted text (visible on white)
+    root.style.setProperty('--brand-border', 'rgba(0, 0, 0, 0.1)');
+    root.style.setProperty('--brand-text-muted', 'rgba(0, 0, 0, 0.6)');
     
     if (data.brand_font) {
       const link = document.createElement('link');

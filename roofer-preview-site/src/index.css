@@ -2,12 +2,12 @@
 
 :root {
   --brand-accent: #c5a059;
-  --brand-primary: #061b31;
-  --brand-dark: color-mix(in srgb, var(--brand-primary), black 40%);
-  --brand-surface: color-mix(in srgb, var(--brand-primary), black 25%);
+  --brand-dark: #0a0a0a;
+  --brand-surface: #141414;
   --brand-light: #f5f5f4;
-  --brand-text-muted: color-mix(in srgb, var(--brand-primary), transparent 40%);
-  --brand-border: color-mix(in srgb, var(--brand-primary), transparent 85%);
+  --brand-text-muted: rgba(0, 0, 0, 0.6);
+  --brand-border: rgba(0, 0, 0, 0.1);
+  --brand-primary: #1a1a1a; /* Safe neutral dark for text */
 }
 
 /* Global Styles */

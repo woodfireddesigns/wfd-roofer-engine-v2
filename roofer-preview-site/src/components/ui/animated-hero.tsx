@@ -59,7 +59,7 @@ function Hero({ companyName, heroCopy, phone }: HeroProps) {
               </span>
             </h1>
 
-            <p className="text-lg md:text-2xl leading-relaxed text-gray-400 max-w-2xl text-center mx-auto mt-6 font-medium">
+            <p className="text-lg md:text-2xl leading-relaxed text-[var(--brand-text-muted)] max-w-2xl text-center mx-auto mt-6 font-medium">
               {heroCopy}
             </p>
           </div>
