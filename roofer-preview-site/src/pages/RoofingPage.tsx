@@ -91,6 +91,7 @@ export default function RoofingPage() {
             state: leadRecord.state,
             google_review_count: leadRecord.google_review_count,
             google_star_rating: leadRecord.google_star_rating,
+            brand_primary_raw: leadRecord.brand_primary_color,
           };
         }
       }
@@ -118,6 +119,7 @@ export default function RoofingPage() {
     root.style.setProperty('--brand-dark', data.brand_color_dark || '#0a0a0a');
     root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
     root.style.setProperty('--brand-surface', data.brand_color_surface || '#141414');
+    root.style.setProperty('--brand-primary', (data as any).brand_primary_raw || '#061b31');
     
     if (data.brand_font) {
       const link = document.createElement('link');
@@ -191,16 +193,16 @@ export default function RoofingPage() {
               onError={() => setLogoError(true)}
             />
           ) : (
-            <span className="text-2xl nike-display tracking-tight text-[#111111]" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="text-2xl nike-display text-[#111111]" style={{ fontFamily: 'var(--font-display)' }}>
               {data.company_name}
             </span>
           )}
         </div>
         <div className="hidden lg:flex items-center space-x-8">
-          <a href="#services" className="text-xs font-black tracking-widest text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Services</a>
-          <a href="#process" className="text-xs font-black tracking-widest text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Our Process</a>
-          <a href="#reviews" className="text-xs font-black tracking-widest text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Testimonials</a>
-          <a href={`tel:${data.phone || '410-555-0123'}`} className="flex items-center text-sm font-black text-[#111111] tracking-tight hover:text-[var(--brand-accent)] transition-colors">
+          <a href="#services" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Services</a>
+          <a href="#process" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Our Process</a>
+          <a href="#reviews" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Testimonials</a>
+          <a href={`tel:${data.phone || '410-555-0123'}`} className="flex items-center text-sm font-black text-[#111111] hover:text-[var(--brand-accent)] transition-colors">
             <Phone size={16} className="mr-2 text-[var(--brand-accent)]" />
             CLICK TO CALL
           </a>
@@ -233,7 +235,7 @@ export default function RoofingPage() {
       </section>
 
       {/* 3. Trust Bar (Stripe Style) */}
-      <section className="bg-[#F5F5F5] py-12 border-b border-[#CACACB]">
+      <section className="bg-[var(--brand-light)] py-12 border-b border-[#CACACB]">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12 items-center">
           <div className="flex justify-center grayscale hover:grayscale-0 transition-all duration-500">
             <img src="/google-reviews-badge.png" alt="Google Reviews" className="h-12 md:h-16 w-auto object-contain" />
@@ -325,7 +327,7 @@ export default function RoofingPage() {
       <section id="estimate" className="py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white rounded-xl shadow-stripe p-10 md:p-16 border border-gray-100">
-            <h2 className="text-4xl stripe-display text-[#061b31] mb-4 text-center">Get Your Free Estimate</h2>
+            <h2 className="text-4xl stripe-display text-[var(--brand-primary)] mb-4 text-center">Get Your Free Estimate</h2>
             <p className="text-[#425466] text-center mb-12">Professional assessment and transparent pricing. No obligation.</p>
             
             {formStatus === 'success' ? (
@@ -346,32 +348,32 @@ export default function RoofingPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-[#061b31] uppercase">Full Name</label>
+                    <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Full Name</label>
                     <input name="name" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-[#061b31] uppercase">Phone Number</label>
+                    <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Phone Number</label>
                     <input name="phone" required type="tel" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-[#061b31] uppercase">Email Address</label>
+                    <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Email Address</label>
                     <input name="email" required type="email" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-[#061b31] uppercase">Service Needed</label>
+                    <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Service Needed</label>
                     <select name="service" required className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none bg-white">
                       {services.map((s, i) => <option key={i} value={s}>{s}</option>)}
                     </select>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-[#061b31] uppercase">Property Address</label>
+                  <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Property Address</label>
                   <input name="address" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-[#061b31] uppercase">Message / Details</label>
+                  <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Message / Details</label>
                   <textarea name="message" rows={4} className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none"></textarea>
                 </div>
                 <div className="pt-4 text-center">
@@ -394,7 +396,7 @@ export default function RoofingPage() {
       {/* 10. FAQ Accordion (Stripe Style) */}
       <section className="py-32 bg-white">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-4xl stripe-display text-[#061b31] mb-16 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-4xl stripe-display text-[var(--brand-primary)] mb-16 text-center">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {[
               { q: "How long does a typical roof replacement take?", a: "Most residential roof replacements are completed in just 1-2 days, depending on the size of the home and weather conditions." },
@@ -409,7 +411,7 @@ export default function RoofingPage() {
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-bold text-[#061b31]">{faq.q}</span>
+                  <span className="font-bold text-[var(--brand-primary)]">{faq.q}</span>
                   {activeFaq === i ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </button>
                 <AnimatePresence>

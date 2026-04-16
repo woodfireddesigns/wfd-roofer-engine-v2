@@ -32,7 +32,7 @@ function Hero({ companyName, heroCopy, phone }: HeroProps) {
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
 
           <div className="flex gap-4 flex-col text-center">
-            <h1 className="text-6xl md:text-8xl tracking-tighter text-center nike-display uppercase">
+            <h1 className="text-6xl md:text-8xl text-center nike-display uppercase">
               <span className="text-white block mb-2">{companyName}</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center h-[1.2em] text-[var(--brand-accent)]">
                 {titles.map((title, index) => (
@@ -59,7 +59,7 @@ function Hero({ companyName, heroCopy, phone }: HeroProps) {
               </span>
             </h1>
 
-            <p className="text-lg md:text-2xl leading-relaxed tracking-tight text-gray-400 max-w-2xl text-center mx-auto mt-6 font-medium">
+            <p className="text-lg md:text-2xl leading-relaxed text-gray-400 max-w-2xl text-center mx-auto mt-6 font-medium">
               {heroCopy}
             </p>
           </div>

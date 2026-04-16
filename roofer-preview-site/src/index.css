@@ -35,11 +35,11 @@ body {
   font-family: var(--font-display, "Inter", sans-serif);
   text-transform: uppercase;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 0.9;
 }
 
 .stripe-display {
   font-weight: 300;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
