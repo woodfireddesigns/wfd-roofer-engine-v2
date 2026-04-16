@@ -10,7 +10,7 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { ButtonColorful } from "@/components/ui/button-colorful";
 import { ServiceAreaCards } from "../components/ServiceAreaCards";
 import { TrustBadges } from "../components/TrustBadges";
-import { pickAccentColor } from "../lib/utils";
+import { pickAccentColor, shadeColor } from "../lib/utils";
 
 const DEFAULT_SERVICES = [
   "Asphalt Shingles", "Metal Roofing", "Flat & Low-Slope Roofing",
@@ -125,6 +125,15 @@ export default function RoofingPage() {
     root.style.setProperty('--brand-accent', accent);
     root.style.setProperty('--brand-primary', primary);
     root.style.setProperty('--brand-light', data.brand_color_light || '#f5f5f4');
+    
+    // Explicitly set calculated dark/surface colors to force the tinting away from black
+    const derivedDark = shadeColor(primary, -0.6); // 60% darker than primary
+    const derivedSurface = shadeColor(primary, -0.4); // 40% darker than primary
+    
+    root.style.setProperty('--brand-dark', derivedDark);
+    root.style.setProperty('--brand-surface', derivedSurface);
+    root.style.setProperty('--brand-border', shadeColor(primary, -0.2));
+    root.style.setProperty('--brand-text-muted', shadeColor(primary, -0.1));
     
     if (data.brand_font) {
       const link = document.createElement('link');
