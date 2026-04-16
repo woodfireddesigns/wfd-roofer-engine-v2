@@ -193,16 +193,16 @@ export default function RoofingPage() {
               onError={() => setLogoError(true)}
             />
           ) : (
-            <span className="text-2xl nike-display text-[#111111]" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="text-2xl nike-display text-[var(--brand-primary)]" style={{ fontFamily: 'var(--font-display)' }}>
               {data.company_name}
             </span>
           )}
         </div>
         <div className="hidden lg:flex items-center space-x-8">
-          <a href="#services" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Services</a>
-          <a href="#process" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Our Process</a>
-          <a href="#reviews" className="text-xs font-black text-[#111111] uppercase hover:text-[var(--brand-accent)] transition-colors">Testimonials</a>
-          <a href={`tel:${data.phone || '410-555-0123'}`} className="flex items-center text-sm font-black text-[#111111] hover:text-[var(--brand-accent)] transition-colors">
+          <a href="#services" className="text-xs font-black text-[var(--brand-primary)] uppercase hover:text-[var(--brand-accent)] transition-colors">Services</a>
+          <a href="#process" className="text-xs font-black text-[var(--brand-primary)] uppercase hover:text-[var(--brand-accent)] transition-colors">Our Process</a>
+          <a href="#reviews" className="text-xs font-black text-[var(--brand-primary)] uppercase hover:text-[var(--brand-accent)] transition-colors">Testimonials</a>
+          <a href={`tel:${data.phone || '410-555-0123'}`} className="flex items-center text-sm font-black text-[var(--brand-primary)] hover:text-[var(--brand-accent)] transition-colors">
             <Phone size={16} className="mr-2 text-[var(--brand-accent)]" />
             CLICK TO CALL
           </a>
@@ -335,7 +335,7 @@ export default function RoofingPage() {
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 text-green-600 mb-6">
                   <CheckCircle size={40} />
                 </div>
-                <h3 className="text-2xl font-bold text-[#061b31] mb-2">Thank you!</h3>
+                <h3 className="text-2xl font-bold text-[var(--brand-primary)] mb-2">Thank you!</h3>
                 <p className="text-[#425466]">We've received your request and will contact you shortly.</p>
                 <button 
                   onClick={() => setFormStatus('idle')}
@@ -406,7 +406,7 @@ export default function RoofingPage() {
               { q: "What warranty do you provide?", a: "We provide a double-layered warranty: a lifetime manufacturer's warranty on materials and our own 10-year workmanship guarantee." },
               { q: "How do I know if I need a full replacement or just a repair?", a: "Our free inspection includes a multi-point assessment. If your roof has widespread leaking, many missing shingles, or is over 20 years old, a replacement is usually more cost-effective." }
             ].map((faq, i) => (
-              <div key={i} className="border border-[#CACACB] rounded-lg overflow-hidden">
+              <div key={i} className="border border-[var(--brand-primary)]/20 rounded-lg overflow-hidden">
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
