@@ -4,8 +4,10 @@
   --brand-accent: #c5a059;
   --brand-primary: #061b31;
   --brand-dark: var(--brand-primary);
-  --brand-surface: #141414;
+  --brand-surface: color-mix(in_srgb, var(--brand-primary), black 20%);
   --brand-light: #f5f5f4;
+  --brand-text-muted: color-mix(in_srgb, var(--brand-primary), transparent 40%);
+  --brand-border: color-mix(in_srgb, var(--brand-primary), transparent 85%);
 }
 
 /* Global Styles */

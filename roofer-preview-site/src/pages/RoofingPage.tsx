@@ -192,7 +192,7 @@ export default function RoofingPage() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* 1. Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-[#CACACB] px-6 py-4 flex items-center justify-between">
+      <nav className="sticky top-0 z-50 bg-white border-b border-[var(--brand-border)] px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
           {(data.logo_url && !logoError) ? (
             <img 
@@ -244,7 +244,7 @@ export default function RoofingPage() {
       </section>
 
       {/* 3. Trust Bar (Stripe Style) */}
-      <section className="bg-[var(--brand-light)] py-12 border-b border-[#CACACB]">
+      <section className="bg-[var(--brand-light)] py-12 border-b border-[var(--brand-border)]">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12 items-center">
           <div className="flex justify-center grayscale hover:grayscale-0 transition-all duration-500">
             <img src="/google-reviews-badge.png" alt="Google Reviews" className="h-12 md:h-16 w-auto object-contain" />
@@ -322,7 +322,7 @@ export default function RoofingPage() {
               <div key={i} className="flex flex-col">
                 <span className="text-5xl nike-display text-[var(--brand-accent)] mb-4">{i + 1}</span>
                 <h3 className="text-2xl nike-display mb-4">{step.title}</h3>
-                <p className="text-gray-400 font-medium leading-relaxed">{step.desc}</p>
+                <p className="text-[var(--brand-text-muted)] font-medium leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -335,9 +335,9 @@ export default function RoofingPage() {
       {/* 8. Free Estimate Form (Stripe Style) */}
       <section id="estimate" className="py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-xl shadow-stripe p-10 md:p-16 border border-gray-100">
+          <div className="bg-white rounded-xl shadow-stripe p-10 md:p-16 border border-[var(--brand-border)]">
             <h2 className="text-4xl stripe-display text-[var(--brand-primary)] mb-4 text-center">Get Your Free Estimate</h2>
-            <p className="text-[#425466] text-center mb-12">Professional assessment and transparent pricing. No obligation.</p>
+            <p className="text-[var(--brand-text-muted)] text-center mb-12">Professional assessment and transparent pricing. No obligation.</p>
             
             {formStatus === 'success' ? (
               <div className="text-center py-10">
@@ -345,7 +345,7 @@ export default function RoofingPage() {
                   <CheckCircle size={40} />
                 </div>
                 <h3 className="text-2xl font-bold text-[var(--brand-primary)] mb-2">Thank you!</h3>
-                <p className="text-[#425466]">We've received your request and will contact you shortly.</p>
+                <p className="text-[var(--brand-text-muted)]">We've received your request and will contact you shortly.</p>
                 <button 
                   onClick={() => setFormStatus('idle')}
                   className="mt-8 text-[var(--brand-accent)] font-bold uppercase text-sm"
@@ -358,32 +358,32 @@ export default function RoofingPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Full Name</label>
-                    <input name="name" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
+                    <input name="name" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Phone Number</label>
-                    <input name="phone" required type="tel" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
+                    <input name="phone" required type="tel" className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Email Address</label>
-                    <input name="email" required type="email" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
+                    <input name="email" required type="email" className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Service Needed</label>
-                    <select name="service" required className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none bg-white">
+                    <select name="service" required className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none bg-white">
                       {services.map((s, i) => <option key={i} value={s}>{s}</option>)}
                     </select>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Property Address</label>
-                  <input name="address" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
+                  <input name="address" required type="text" className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-[var(--brand-primary)] uppercase">Message / Details</label>
-                  <textarea name="message" rows={4} className="w-full px-4 py-3 rounded-[4px] border border-gray-200 focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none"></textarea>
+                  <textarea name="message" rows={4} className="w-full px-4 py-3 rounded-[4px] border border-[var(--brand-border)] focus:border-[var(--brand-accent)] focus:ring-1 focus:ring-[var(--brand-accent)] outline-none"></textarea>
                 </div>
                 <div className="pt-4 text-center">
                   <ButtonColorful 
@@ -431,7 +431,7 @@ export default function RoofingPage() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 text-[#425466] leading-relaxed border-t border-gray-100">
+                      <div className="p-6 pt-0 text-[var(--brand-text-muted)] leading-relaxed border-t border-[var(--brand-border)]">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -482,29 +482,29 @@ export default function RoofingPage() {
              <span className="text-3xl nike-display block mb-6" style={{ fontFamily: 'var(--font-display)' }}>
               {data.company_name}
             </span>
-            <div className="flex items-center text-gray-400 mb-2">
+            <div className="flex items-center text-[var(--brand-text-muted)] mb-2">
               <MapPin size={18} className="mr-2" />
               <span>{data.city}, {data.state}</span>
             </div>
-            <div className="flex items-center text-gray-400 mb-2">
+            <div className="flex items-center text-[var(--brand-text-muted)] mb-2">
               <Phone size={18} className="mr-2" />
               <span>{data.phone || '410-555-0123'}</span>
             </div>
           </div>
           <div>
             <h4 className="font-bold uppercase text-xs tracking-widest text-[var(--brand-accent)] mb-6">Service Areas</h4>
-            <ul className="space-y-3 text-gray-400 text-sm">
+            <ul className="space-y-3 text-[var(--brand-text-muted)] text-sm">
               {data.service_area.map((city, i) => <li key={i}>{city}</li>)}
             </ul>
           </div>
           <div>
             <h4 className="font-bold uppercase text-xs tracking-widest text-[var(--brand-accent)] mb-6">Our Services</h4>
-            <ul className="space-y-3 text-gray-400 text-sm">
+            <ul className="space-y-3 text-[var(--brand-text-muted)] text-sm">
               {services.slice(0, 5).map((s, i) => <li key={i}>{s}</li>)}
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-gray-600 text-[10px] uppercase font-bold tracking-widest">
+        <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[var(--brand-text-muted)] text-[10px] uppercase font-bold tracking-widest">
           <p>© {new Date().getFullYear()} {data.company_name}. ALL RIGHTS RESERVED.</p>
           <p>BUILT BY WOOD FIRED DESIGNS</p>
         </div>

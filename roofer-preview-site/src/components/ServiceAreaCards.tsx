@@ -16,7 +16,7 @@ export function ServiceAreaCards({ cities }: ServiceAreaCardsProps) {
                         <h2 className="text-6xl md:text-8xl lg:text-9xl nike-display text-white leading-none mb-6">
                             AREAS <span className="text-[var(--brand-accent)]">SERVED</span>
                         </h2>
-                        <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed">
+                        <p className="text-[var(--brand-text-muted)] text-lg md:text-xl font-medium leading-relaxed">
                             We take pride in providing premium roofing solutions to these communities. 
                             Our local crews are ready to respond 24/7.
                         </p>
@@ -42,7 +42,7 @@ export function ServiceAreaCards({ cities }: ServiceAreaCardsProps) {
                                     <span className="block text-2xl font-black text-white group-hover:text-[var(--brand-accent)] transition-colors">
                                         {Math.floor(Math.random() * 50) + 120}+
                                     </span>
-                                    <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest">Projects</span>
+                                    <span className="text-[10px] text-[var(--brand-text-muted)] uppercase font-black tracking-widest">Projects</span>
                                 </div>
                             </div>
                             
