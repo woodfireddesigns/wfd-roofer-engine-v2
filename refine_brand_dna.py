@@ -42,14 +42,15 @@ def refine_lead(lead):
     
     Instructions:
     1. Color Harmony: Create a palette that feels masculine, professional, and expensive (premium roofing aesthetic).
-    2. Accent Strategy: Select an 'accent' color that is vibrant and has high contrast against dark backgrounds (#0a0a0a or similar). If the provided colors are too dark, choose a lighter/neon version of them.
-    3. Background Strategy: Decide if the site should be pure black (#0a0a0a) or a 'deep brand' background (very dark navy, charcoal, or forest green based on their primary).
-    4. Typography: Pick a 'font_display' (Google Font) that is heavy and bold (like Anton, Montserrat Black, or Inter ExtraBold) and a 'font_body' that is clean (like Inter or Roboto).
-    5. JSON Output: Return ONLY a JSON object with these keys:
+    2. Accent Strategy: Select an 'accent' color that is vibrant and has high contrast against dark backgrounds. If the provided colors are too dark, choose a lighter/brighter tint of them. The accent MUST have a perceptual luminance above 0.35.
+    3. Background Strategy: NEVER use pure black (#0a0a0a or any color with RGB values all below 20). ALWAYS create a 'deep brand' background based on their primary color hue. Examples: blue brand -> #0d1b4f (dark navy), red brand -> #2d0a0a (deep crimson), green brand -> #0a2d1a (forest). The background must have a VISIBLE color tint — minimum RGB range of 30 between channels so it reads as a real color, not black.
+    4. Surface: Must be 15-25 points lighter than background across all channels so cards are visibly distinct.
+    5. Typography: Pick a 'font_display' (Google Font) that is heavy and bold (like Anton, Montserrat Black, or Inter ExtraBold) and a 'font_body' that is clean (like Inter or Roboto).
+    6. JSON Output: Return ONLY a JSON object with these keys:
     {{
-      "accent": "#hex",
-      "background": "#hex",
-      "surface": "#hex (slightly lighter than background for cards)",
+      "accent": "#hex — vibrant, luminance > 0.35",
+      "background": "#hex — deep brand dark, NEVER pure black, must have visible color tint",
+      "surface": "#hex — 15-25 points lighter than background for cards",
       "text_primary": "#hex (usually #ffffff or similar)",
       "text_secondary": "#hex (muted gray/brand color)",
       "font_display": "Google Font Name",
