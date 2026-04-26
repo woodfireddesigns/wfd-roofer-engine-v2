@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff5f00; /* vibrant orange */
+  --color-primary-light: #ff8533;
+  --color-primary-dark: #cc4c00;
+  --color-background: #050505;
+  --color-surface: #0a0a0a;
+  --color-surface-bright: rgba(255, 255, 255, 0.1);
+  
+  --font-serif: "Anton", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Anton", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .vanguard-heading {
+    @apply font-serif uppercase tracking-[-0.025em] leading-none;
+  }
+
+  .text-stroke-white {
+    -webkit-text-stroke: 1.5px white;
+    color: transparent;
+  }
+
+  .micro-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.4em] text-primary;
+  }
+
+  .meta-info {
+    @apply text-[11px] uppercase tracking-widest font-normal text-white/80;
+  }
+
+  .vanguard-btn {
+    @apply bg-white text-black px-10 py-5 text-sm uppercase font-serif tracking-widest transition-all hover:bg-primary hover:text-white border border-white;
+  }
+
+  .vanguard-btn-outline {
+    @apply border border-white/20 text-white px-10 py-5 text-sm uppercase font-serif tracking-widest transition-all hover:bg-white hover:text-black;
+  }
+
+  .grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes border-trail {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .glow-border {
+    @apply relative overflow-hidden;
+  }
+
+  .glow-border::before {
+    content: '';
+    @apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] opacity-40 -z-10;
+    background: conic-gradient(
+      transparent,
+      var(--color-primary) 10%,
+      transparent 20%
+    );
+    animation: border-trail 6s linear infinite;
+  }
+
+  .orb-glow {
+    @apply absolute w-32 h-32 bg-primary/40 rounded-full blur-[60px] pointer-events-none z-0;
+  }
+
+  @keyframes orb-rotate {
+    from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+  }
+
+  .animate-orb {
+    animation: orb-rotate 8s linear infinite;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes line-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 8px 2px rgba(255, 100, 0, 0.4); 
+      opacity: 0.8;
+    }
+    50% { 
+      box-shadow: 0 0 14px 4px rgba(255, 130, 0, 0.7); 
+      opacity: 1;
+    }
+  }
+
+  .animate-line-pulse {
+    animation: line-pulse 3s ease-in-out infinite;
+  }
+
+  .footer-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+  }
+}
